@@ -1,9 +1,7 @@
 import math
-
 import torch
 from torch import nn
 from torch.nn import functional as F
-
 
 def get_relative_positions(seq_len: int) -> torch.tensor:
     x = torch.arange(seq_len)[None, :]
