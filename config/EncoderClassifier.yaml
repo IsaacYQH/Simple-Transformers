@@ -1,0 +1,20 @@
+batch_size: 256  # Number of independent sequences  we will process in parallel
+learning_rate: 1e-2  # Learning rate for the optimizer
+seed: 42
+epochs: 100 # epochs for classifier training
+
+## classifier training hyperparameters. It is a simple 1 hidden layer feedforward network, with input 
+## size of 64, hidden size of 50 and output size of 3.
+model:
+  target: transformer.EncoderClassifierWrapper
+  params:
+    block_size: 32  # Maximum context length for predictions
+    n_embd: 64  # Embedding dimension
+    n_head: 2  # Number of attention heads
+    n_layer: 4  # Number of transformer layers
+    n_input: 64  # Input size for the classifier, should match the embedding size of the transformer
+    n_hidden: 100  # Hidden size for the classifier
+    n_output: 3  # Output size for the classifier, we have 3 classes
+    class_num: 3
+    masked: False
+    dropout: 0.2

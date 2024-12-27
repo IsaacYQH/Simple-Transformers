@@ -1,0 +1,18 @@
+# for LM task
+max_iters: 500 # For language modeling, we can process all the batches for the entire dataset, but that takes a while, so we'll limit it to 500 iterations. For batch size of 16 and block size of  32, this is roughly, this is  500 * 16 * 32 = 256000 tokens, SOTA LMs are trained on trillions of tokens, so this is a very small dataset.
+eval_iters: 100  # Number of iterations to evaluate perplexity on the test set
+batch_size: 16  # Number of independent sequences  we will process in parallel
+learning_rate: 1e-3  # Learning rate for the optimizer
+seed: 42
+
+model:
+  target: transformer.GPTLanguageModel
+  params:
+    block_size: 32  # Maximum context length for predictions
+    n_embd: 64  # Embedding dimension
+    n_head: 2  # Number of attention heads
+    n_layer: 4  # Number of transformer layers
+    n_input: 64  # Input size for the classifier, should match the embedding size of the transformer
+    n_hidden: 100  # Hidden size for the classifier
+    masked: True
+    dropout: 0.2
